@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class IdleState : IState<Character>
 {
-    public void OnEnter(Character t)
+    public void OnEnter(Character character)
+    {
+    }
+
+    public void OnExecute(Character character)
     {
 
     }
 
-    public void OnExecute(Character t)
+    public void OnExit(Character character)
     {
-        
-    }
-
-    public void OnExit(Character t)
-    {
-
     }
 
 }

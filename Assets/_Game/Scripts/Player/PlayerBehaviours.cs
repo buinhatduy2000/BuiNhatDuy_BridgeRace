@@ -8,7 +8,7 @@ public class PlayerBehaviours : Character
     private Vector3 InputVector;
     [SerializeField] private FloatingJoystick Joystick;
 
-    void Start()
+    public override void Start()
     {
         ChangeAnimation("Idle");
     }
@@ -33,17 +33,21 @@ public class PlayerBehaviours : Character
 
     private void PlayerMovement()
     {
-        _rigidbody.velocity = InputVector * moveSpeed;
-
-
+        if (canMove)
+        {
+            _rigidbody.velocity = InputVector * moveSpeed;
+        }
+        else
+        {
+            _rigidbody.velocity = Vector3.zero;
+        }
     }
 
     private void PlayerRotate()
     {
-        if (InputVector != Vector3.zero)
+        if (Vector3.Distance(InputVector, Vector3.zero) > 0.1f)
         {
             Quaternion toRotate = Quaternion.LookRotation(InputVector, Vector3.up);
-
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, moveSpeed);
         }
         else
