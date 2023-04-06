@@ -19,35 +19,12 @@ public class BotBehaviours : Character
         navMeshAgent.speed = moveSpeed;
     }
 
-    private void Update()
+    public override void Start()
     {
-        FindSameColorBrickSpawns();
-        ChangeAnimation("Run");
-        if (isPickBrick)
-        {
-            MoveToClosestBrickOfType(brickSpawns, numColor);
-        }
-        else
-        {
-            MoveToTarget();
-        }
+        ChangeState(new PickupBrick());
     }
 
-    public void MoveToTarget()
-    {
-        navMeshAgent.SetDestination(target.position);
-    }
-
-    public void MoveToClosestBrickOfType(GameObject[] bricks, int color)
-    {
-        GameObject closestBrick = GetClosestBrickOfType(bricks, color);
-        if (closestBrick != null)
-        {
-            navMeshAgent.SetDestination(closestBrick.transform.position);
-        }
-    }
-
-    public GameObject GetClosestBrickOfType(GameObject[] bricks, int color)
+    public GameObject GetClosestBrick(GameObject[] bricks)
     {
         GameObject closestBrick = null;
         float closestDistance = Mathf.Infinity;
@@ -55,7 +32,7 @@ public class BotBehaviours : Character
         foreach (GameObject brick in bricks)
         {
             Brick brickComponent = brick.GetComponent<Brick>();
-            if (brickComponent && brickComponent.GetNumColor() == color)
+            if (brickComponent)
             {
                 float distance = Vector3.Distance(currentPosition, brick.transform.position);
                 if (distance < closestDistance)
@@ -68,7 +45,7 @@ public class BotBehaviours : Character
         return closestBrick;
     }
 
-    private void FindSameColorBrickSpawns()
+    public void FindSameColorBrickSpawns()
     {
         GameObject[] allBrickSpawns = GameObject.FindGameObjectsWithTag("Brick");
         List<GameObject> sameColorBrickSpawns = new List<GameObject>();

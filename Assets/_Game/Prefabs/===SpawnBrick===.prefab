@@ -44,7 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickPrefab: {fileID: 909478465321928945, guid: 2548616f3e3be47418445f60492d8dbf, type: 3}
-  numberOfRows: 15
-  numberOfColumns: 5
-  spacingX: 2
-  spacingZ: 2
+  plane:
+  - namePlane: Plane 1
+    spawnPointOnPlane: {fileID: 0}
+    materialCanSpawn: []
+    characterOnThisPlane: []
+    numberOfRows: 0
+    numberOfColumns: 0
+    spacingX: 0
+    spacingZ: 0

@@ -35,11 +35,11 @@ public class PlayerBehaviours : Character
     {
         if (canMove || InputVector.z < 0)
         {
-            _rigidbody.velocity = InputVector * moveSpeed;
+            _rigidbody.velocity = InputVector * moveSpeed;  //new Vector3(InputVector.x, _rigidbody.velocity.y * Time.deltaTime, InputVector.z) * moveSpeed;
         }
         else
         {
-            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.velocity = Vector3.zero; // new Vector3(0, _rigidbody.velocity.y * Time.deltaTime, 0);
         }
     }
 

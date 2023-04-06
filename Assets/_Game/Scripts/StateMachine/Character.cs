@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     private IState<Character> currentState;
     [SerializeField] private Animator anim;
     [SerializeField] protected Rigidbody _rigidbody;
-    [SerializeField] protected int numColor;
+    [SerializeField] public int numColor;
     [SerializeField] protected float moveSpeed;
     [SerializeField] public Transform brickHolder;
     [SerializeField] protected Renderer _renderer;
@@ -41,8 +41,9 @@ public class Character : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 down = pointCheckMovement.TransformDirection(Vector3.down);
-        Debug.DrawRay(pointCheckMovement.position, Vector3.down * 10, Color.red);
-        if (Physics.Raycast(pointCheckMovement.position, down, out hit, 10, buildBrickLayer))
+
+        Debug.DrawRay(pointCheckMovement.position, Vector3.down * Mathf.Infinity, Color.red);
+        if (Physics.Raycast(pointCheckMovement.position, down, out hit, Mathf.Infinity, buildBrickLayer))
         {
             BuildBrick buildBrick = hit.collider.GetComponent<BuildBrick>();
  
@@ -55,7 +56,7 @@ public class Character : MonoBehaviour
                 canMove = true;
             }
         }
-        else if (Physics.Raycast(pointCheckMovement.position, down, out hit, 10, groundLayer))
+        else if (Physics.Raycast(pointCheckMovement.position, down, out hit, Mathf.Infinity, groundLayer))
         {
             canMove = true;
         }
@@ -111,7 +112,7 @@ public class Character : MonoBehaviour
         return numColor;
     }
 
-    protected void ChangeAnimation(string animationName)
+    public void ChangeAnimation(string animationName)
     {
         if (currentAnimation != animationName)
         {
@@ -141,13 +142,26 @@ public class Character : MonoBehaviour
                 stackedBrick.transform.localScale = new Vector3(1f,1f,1f);
                 brickHolder_y += 0.2f;
 
-                //Destroy(other.gameObject);
-                brick.PickUp();
+                Destroy(other.gameObject);
             }
             else
             {
                 //Debug.Log("Not true color");
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            ContactPoint[] contacts = collision.contacts;
+
+            foreach(ContactPoint contact in contacts)
+            {
+                Debug.Log(contact.point.z); 
+            }
+        }
+        
     }
 }

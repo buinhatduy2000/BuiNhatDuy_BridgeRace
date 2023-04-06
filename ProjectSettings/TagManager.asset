@@ -7,6 +7,8 @@ TagManager:
   - Brick
   - Step
   - Character
+  - Wall
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - BrickBuilder
   - Character
-  - 
+  - Wall
   - 
   - 
   - 

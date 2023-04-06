@@ -13,12 +13,6 @@ public class LevelManager : MonoBehaviour
 
     private void SetCharactersColor()
     {
-        //foreach (Character character in characters)
-        //{
-        //    MaterialType characterMaterialType = (MaterialType)Random.Range(0, System.Enum.GetValues(typeof(MaterialType)).Length);
-        //    Material characterMaterial = ColorManager.Instance.color.GetColor(characterMaterialType);
-        //    character.SetCharacterColor(characterMaterial, (int)characterMaterialType);
-        //}
 
         if(characters.Length > System.Enum.GetValues(typeof(MaterialType)).Length)
         {
@@ -33,7 +27,5 @@ public class LevelManager : MonoBehaviour
                 characters[i].SetCharacterColor(characterMaterial, (int)characterMaterialType);
             }
         }
-
-       
     }
 }
