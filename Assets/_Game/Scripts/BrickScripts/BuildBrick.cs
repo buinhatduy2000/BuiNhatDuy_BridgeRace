@@ -11,6 +11,7 @@ public class BuildBrick : MonoBehaviour
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _meshRenderer.enabled = false;
+        numberColor = 999;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,7 +38,7 @@ public class BuildBrick : MonoBehaviour
             {
                 if (_meshRenderer.enabled && numberColor != characterNumColor)
                 {
-                    Debug.Log("Cannot move");
+                    character.canMove = true;
                 }
             }
         }

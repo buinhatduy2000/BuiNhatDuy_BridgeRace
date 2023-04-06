@@ -8,38 +8,43 @@ public class BotBehaviours : Character
 {
     [SerializeField] public GameObject[] brickSpawns;
     [SerializeField] public Transform target;
-    [SerializeField] public int maxBrickHolder = 10;
+    [SerializeField] public int maxBrickHolder = 20;
+    [SerializeField] public bool isPickBrick;
 
     public NavMeshAgent navMeshAgent;
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = moveSpeed;
     }
 
     private void Update()
     {
         FindSameColorBrickSpawns();
         ChangeAnimation("Run");
-
-        if (brickHolder.childCount == 0)
+        if (isPickBrick)
         {
             MoveToClosestBrickOfType(brickSpawns, numColor);
-        }
-        else if (brickHolder.childCount >= maxBrickHolder)
-        {
-            MoveToTarget();
-            Debug.Log("Move to target");
         }
         else
         {
-            MoveToClosestBrickOfType(brickSpawns, numColor);
+            MoveToTarget();
         }
     }
 
     public void MoveToTarget()
     {
         navMeshAgent.SetDestination(target.position);
+    }
+
+    public void MoveToClosestBrickOfType(GameObject[] bricks, int color)
+    {
+        GameObject closestBrick = GetClosestBrickOfType(bricks, color);
+        if (closestBrick != null)
+        {
+            navMeshAgent.SetDestination(closestBrick.transform.position);
+        }
     }
 
     public GameObject GetClosestBrickOfType(GameObject[] bricks, int color)
@@ -61,15 +66,6 @@ public class BotBehaviours : Character
             }
         }
         return closestBrick;
-    }
-
-    public void MoveToClosestBrickOfType(GameObject[] bricks, int color)
-    {
-        GameObject closestBrick = GetClosestBrickOfType(bricks, color);
-        if (closestBrick != null)
-        {
-            navMeshAgent.SetDestination(closestBrick.transform.position);
-        }
     }
 
     private void FindSameColorBrickSpawns()

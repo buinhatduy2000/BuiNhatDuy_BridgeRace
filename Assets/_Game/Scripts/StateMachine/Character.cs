@@ -14,6 +14,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected Transform pointCheckMovement;
     [SerializeField] public bool canMove;
     [SerializeField] protected LayerMask buildBrickLayer;
+    [SerializeField] protected LayerMask groundLayer;
     private float brickHolder_y;
     private string currentAnimation;
 
@@ -40,11 +41,11 @@ public class Character : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 down = pointCheckMovement.TransformDirection(Vector3.down);
-        Debug.DrawRay(pointCheckMovement.position, Vector3.down * 100, Color.red);
-        if (Physics.Raycast(pointCheckMovement.position, down, out hit, 100, buildBrickLayer))
+        Debug.DrawRay(pointCheckMovement.position, Vector3.down * 10, Color.red);
+        if (Physics.Raycast(pointCheckMovement.position, down, out hit, 10, buildBrickLayer))
         {
             BuildBrick buildBrick = hit.collider.GetComponent<BuildBrick>();
-
+ 
             if (!HasBricksInHolder() && buildBrick.numberColor != GetNumColor())
             {
                 canMove = false;
@@ -54,9 +55,13 @@ public class Character : MonoBehaviour
                 canMove = true;
             }
         }
-        else
+        else if (Physics.Raycast(pointCheckMovement.position, down, out hit, 10, groundLayer))
         {
             canMove = true;
+        }
+        else
+        {
+            canMove = false;
         }
     }
 
@@ -89,7 +94,7 @@ public class Character : MonoBehaviour
     {
         if (brickHolder.childCount > 0)
         {
-            Destroy(brickHolder.GetChild(0).gameObject);
+            Destroy(brickHolder.GetChild(brickHolder.childCount - 1).gameObject);
             brickHolder_y -= 0.2f;
             return true;
         }
@@ -133,6 +138,7 @@ public class Character : MonoBehaviour
                 newPosition.y += brickHolder_y;
                 stackedBrick.transform.position = newPosition;
                 stackedBrick.transform.rotation = rote;
+                stackedBrick.transform.localScale = new Vector3(1f,1f,1f);
                 brickHolder_y += 0.2f;
 
                 //Destroy(other.gameObject);
@@ -140,7 +146,7 @@ public class Character : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not true color");
+                //Debug.Log("Not true color");
             }
         }
     }

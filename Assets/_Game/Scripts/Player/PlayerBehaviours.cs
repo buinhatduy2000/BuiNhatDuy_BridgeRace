@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBehaviours : Character
 {
     [Header("===---Move Properties---===")]
-    private Vector3 InputVector;
+    [SerializeField] private Vector3 InputVector;
     [SerializeField] private FloatingJoystick Joystick;
 
     public override void Start()
@@ -33,7 +33,7 @@ public class PlayerBehaviours : Character
 
     private void PlayerMovement()
     {
-        if (canMove)
+        if (canMove || InputVector.z < 0)
         {
             _rigidbody.velocity = InputVector * moveSpeed;
         }

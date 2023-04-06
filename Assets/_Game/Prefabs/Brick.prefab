@@ -140,4 +140,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickRenderer: {fileID: 909478464426988369}
-  numColor: 0
+  numColor: 999

@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 1478059543201510467}
   - component: {fileID: 1478059543201510464}
   - component: {fileID: 1478059543201510465}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ MonoBehaviour:
   anim: {fileID: 3564547614261667880}
   _rigidbody: {fileID: 1478059543201510467}
   numColor: 0
-  moveSpeed: 10
+  moveSpeed: 6
   brickHolder: {fileID: 1478059543823125706}
   _renderer: {fileID: 5045339760562983119}
   pointCheckMovement: {fileID: 1478059543653768399}
@@ -248,6 +248,7 @@ MonoBehaviour:
   buildBrickLayer:
     serializedVersion: 2
     m_Bits: 64
+  InputVector: {x: 0, y: 0, z: 0}
   Joystick: {fileID: 0}
 --- !u!1 &1478059543653768396
 GameObject:
