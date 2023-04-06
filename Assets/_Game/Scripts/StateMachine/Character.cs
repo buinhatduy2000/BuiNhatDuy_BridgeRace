@@ -142,7 +142,8 @@ public class Character : MonoBehaviour
                 stackedBrick.transform.localScale = new Vector3(1f,1f,1f);
                 brickHolder_y += 0.2f;
 
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
+                brick.PickUp();
             }
             else
             {
