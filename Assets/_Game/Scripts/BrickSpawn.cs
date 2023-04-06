@@ -4,60 +4,52 @@ using UnityEngine;
 
 public class BrickSpawn : MonoBehaviour
 {
-    [SerializeField] private GameObject brickPrefab;
-    [SerializeField] private int numberOfRows = 5;
-    [SerializeField] private int numberOfColumns = 5;
-    [SerializeField] private float spacingX = 2f;
-    [SerializeField] private float spacingZ = 2f;
+    public static BrickSpawn Instance;
+
+    public Transform SpawnPointLv1;
+    public Transform SpawnPointLv2;
+
+    public Transform TranformParent_Blue;
+    public Transform TranformParent_Green;
+    public Transform TranformParent_Red;
+    public Transform TranformParent_Yellow;
 
     private void Start()
     {
-        SpawnBricks();
+        Instance = this;
+
+        TranformParent_Blue.SetParent(SpawnPointLv1);
+        TranformParent_Blue.localPosition = SpawnPointLv1.position;
+        TranformParent_Green.SetParent(SpawnPointLv1);
+        TranformParent_Green.localPosition = SpawnPointLv1.position;
+        TranformParent_Red.SetParent(SpawnPointLv1);
+        TranformParent_Red.localPosition = SpawnPointLv1.position;
+        TranformParent_Yellow.SetParent(SpawnPointLv1);
+        TranformParent_Yellow.localPosition = SpawnPointLv1.position;
     }
-    private void SpawnBricks()
+
+    public void BrickSpawnNextPlane(int numColor)
     {
-        for (int i = 0; i < numberOfRows; i++)
-        {
-            for (int j = 0; j < numberOfColumns; j++)
-            {
-                Vector3 brickPosition = new Vector3(transform.position.x + i * spacingX, transform.position.y, transform.position.z + j * spacingZ);
-
-                GameObject spawnedBrick = Instantiate(brickPrefab, brickPosition, Quaternion.identity);
-                spawnedBrick.transform.SetParent(transform);
-
-                MaterialType brickMaterialType = (MaterialType)Random.Range(0, System.Enum.GetValues(typeof(MaterialType)).Length);
-                Material brickMaterial = ColorManager.Instance.color.GetColor(brickMaterialType);
-                spawnedBrick.GetComponent<Brick>().SetBrickMaterial(brickMaterial);
-                spawnedBrick.GetComponent<Brick>().SetNumColor((int)brickMaterialType);
-
-                Brick brick = spawnedBrick.GetComponent<Brick>();
-                brick.SetBrickMaterial(brickMaterial);
-                brick.SetNumColor((int)brickMaterialType);
-                brick.OnBrickPickedUp += Brick_OnBrickPickedUp;
-            }
+       switch (numColor){
+            case 0:
+                TranformParent_Blue.SetParent(SpawnPointLv2);
+                TranformParent_Blue.localPosition = SpawnPointLv2.localPosition;
+                break;
+            case 1:
+                TranformParent_Green.SetParent(SpawnPointLv2);
+                TranformParent_Green.localPosition = SpawnPointLv2.localPosition;
+                break;
+            case 2:
+                TranformParent_Red.SetParent(SpawnPointLv2);
+                TranformParent_Red.localPosition = SpawnPointLv2.localPosition;
+                break;
+            case 3:
+                TranformParent_Yellow.SetParent(SpawnPointLv2);
+                TranformParent_Yellow.localPosition = SpawnPointLv2.localPosition;
+                break;
+            default:
+                Debug.Log("=)))");
+                break;
         }
-    }
-    private void Brick_OnBrickPickedUp(Brick brick)
-    {
-        Vector3 brickPosition = brick.transform.position;
-        Quaternion brickRotation = brick.transform.rotation;
-        Transform brickParent = brick.transform.parent;
-        StartCoroutine(ReSpawnBrick(brickPosition, brickRotation, brickParent, 2f));
-    }
-
-    private IEnumerator ReSpawnBrick(Vector3 position, Quaternion rotation, Transform parent, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        MaterialType brickMaterialType = (MaterialType)Random.Range(0, System.Enum.GetValues(typeof(MaterialType)).Length);
-        Material brickMaterial = ColorManager.Instance.color.GetColor(brickMaterialType);
-
-        GameObject spawnedBrick = Instantiate(brickPrefab, position, rotation);
-        spawnedBrick.transform.SetParent(parent);
-
-        Brick newBrick = spawnedBrick.GetComponent<Brick>();
-        newBrick.SetBrickMaterial(brickMaterial);
-        newBrick.SetNumColor((int)brickMaterialType);
-        newBrick.OnBrickPickedUp += Brick_OnBrickPickedUp;
     }
 }

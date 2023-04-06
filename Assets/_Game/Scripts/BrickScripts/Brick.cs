@@ -5,27 +5,34 @@ using UnityEngine;
 public class Brick : MonoBehaviour
 {
     [SerializeField] private Renderer brickRenderer;
+    [SerializeField] private Transform parentBrick;
     [SerializeField] private int numColor;
-    public delegate void BrickPickedUpAction(Brick brick);
-    public event BrickPickedUpAction OnBrickPickedUp;
+    [SerializeField] public Vector3 pos;
+
+    private void Start()
+    {
+        MaterialType brickMaterialType = (MaterialType)numColor;
+        Material brickMaterial = ColorManager.Instance.color.GetColor(brickMaterialType);
+        SetBrickMaterial(brickMaterial);
+        pos = this.transform.position;
+    }
 
     public void SetBrickMaterial(Material material)
     {
         brickRenderer.material = material;
     }
 
-    public void SetNumColor(int color)
-    {
-        numColor = color;
-    }
-
     public int GetNumColor()
     {
         return numColor;
     }
-    public void PickUp()
+
+    public void ReSpawnBrick()
     {
-        OnBrickPickedUp?.Invoke(this);
-        Destroy(gameObject);
+        this.transform.SetParent(parentBrick);
+        this.gameObject.tag = "Brick";
+        this.gameObject.transform.localPosition = pos;
+        Quaternion rote = parentBrick.rotation;
+        this.transform.rotation = rote;
     }
 }

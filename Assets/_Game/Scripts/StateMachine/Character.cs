@@ -91,15 +91,10 @@ public class Character : MonoBehaviour
         return brickHolder.childCount > 0;
     }
 
-    public bool RemoveBrickFromHolder()
+    public void RemoveBrickFromHolder()
     {
-        if (brickHolder.childCount > 0)
-        {
-            Destroy(brickHolder.GetChild(brickHolder.childCount - 1).gameObject);
-            brickHolder_y -= 0.2f;
-            return true;
-        }
-        return false;
+        brickHolder.GetChild(brickHolder.childCount - 1).gameObject.GetComponent<Brick>().ReSpawnBrick();
+        brickHolder_y -= 0.2f;
     }
 
     public Material GetCurrentMaterial()
@@ -130,39 +125,21 @@ public class Character : MonoBehaviour
 
             if (brick.GetNumColor() == this.numColor)
             {
-                GameObject stackedBrick = Instantiate(brick.gameObject, brickHolder.position, Quaternion.identity);
-                stackedBrick.transform.SetParent(brickHolder);
+                brick.transform.SetParent(brickHolder);
                 Vector3 newPosition = brickHolder.position;
                 Quaternion rote = brickHolder.rotation;
-                stackedBrick.tag = "Untagged";
+                brick.tag = "Untagged";
 
                 newPosition.y += brickHolder_y;
-                stackedBrick.transform.position = newPosition;
-                stackedBrick.transform.rotation = rote;
-                stackedBrick.transform.localScale = new Vector3(1f,1f,1f);
+                brick.transform.position = newPosition;
+                brick.transform.rotation = rote;
+                brick.transform.localScale = new Vector3(1f,1f,1f);
                 brickHolder_y += 0.2f;
-
-                //Destroy(other.gameObject);
-                brick.PickUp();
             }
             else
             {
                 //Debug.Log("Not true color");
             }
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            ContactPoint[] contacts = collision.contacts;
-
-            foreach(ContactPoint contact in contacts)
-            {
-                Debug.Log(contact.point.z); 
-            }
-        }
-        
     }
 }
