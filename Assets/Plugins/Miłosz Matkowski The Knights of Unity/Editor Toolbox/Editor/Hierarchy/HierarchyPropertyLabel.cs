@@ -50,10 +50,10 @@ namespace Toolbox.Editor.Hierarchy
         {
             switch (dataType)
             {
-                case HierarchyItemDataType.Icon:
-                    return new HierarchyIconLabel();
-                case HierarchyItemDataType.Toggle:
-                    return new HierarchyToggleLabel();
+                //case HierarchyItemDataType.Icon:
+                //    return new HierarchyIconLabel();
+                //case HierarchyItemDataType.Toggle:
+                //    return new HierarchyToggleLabel();
                 case HierarchyItemDataType.Tag:
                     return new HierarchyTagLabel();
                 case HierarchyItemDataType.Layer:

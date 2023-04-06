@@ -387,8 +387,6 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: GamePlay
-    path: Assets/_Game/Scenes/GamePlay.unity
   - name: SampleScene
     path: Assets/Plugins/Examples/Scenes/SampleScene.unity
   - name: View States

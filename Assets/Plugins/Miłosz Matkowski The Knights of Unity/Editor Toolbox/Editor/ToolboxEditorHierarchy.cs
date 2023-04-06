@@ -295,7 +295,8 @@ namespace Toolbox.Editor
         {
             internal static readonly float lineWidth = 0.75f;
 #if UNITY_2019_3_OR_NEWER
-            internal static readonly Color lineColor = EditorGUIUtility.isProSkin ? new Color(0f, 0f, 0f) : new Color(0.59f, 0.59f, 0.59f);
+            //internal static readonly Color lineColor = EditorGUIUtility.isProSkin ? new Color(0.65f, 0.15f, 0.15f) : new Color(0.69f, 0.69f, 0.69f); //Red
+            internal static readonly Color lineColor = EditorGUIUtility.isProSkin ? new Color(0f, 0f, 0f) : new Color(0.69f, 0.69f, 0.69f); //Black
 #else
             internal static readonly Color lineColor = EditorGUIUtility.isProSkin ? new Color(0.15f, 0.15f, 0.15f) : new Color(0.59f, 0.59f, 0.59f);
 #endif
