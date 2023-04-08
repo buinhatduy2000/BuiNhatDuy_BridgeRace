@@ -176,14 +176,14 @@ MonoBehaviour:
     - title: Import Activity
       menuPath: Window/Analysis/Import Activity
       enabled: 1
-    - title: Code Coverage
-      menuPath: Window/Analysis/Code Coverage
-      enabled: 1
-    - title: Profile Analyzer
-      menuPath: Window/Analysis/Profile Analyzer
-      enabled: 1
     - title: IMGUI Debugger
       menuPath: Window/Analysis/IMGUI Debugger
+      enabled: 1
+  - title: 2D
+    enabled: 1
+    items:
+    - title: Tile Palette
+      menuPath: Window/2D/Tile Palette
       enabled: 1
   - title: AI
     enabled: 1
@@ -208,12 +208,6 @@ MonoBehaviour:
       enabled: 1
     - title: Package Asset Converter
       menuPath: Window/UI Toolkit/Package Asset Converter
-      enabled: 1
-  - title: Visual Scripting
-    enabled: 1
-    items:
-    - title: Visual Scripting Graph
-      menuPath: Window/Visual Scripting/Visual Scripting Graph
       enabled: 1
   _favoriteWindows: []
   _headerRules:
