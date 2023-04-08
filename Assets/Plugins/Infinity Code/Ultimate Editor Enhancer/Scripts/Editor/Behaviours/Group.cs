@@ -46,7 +46,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             EventManager.AddBinding(EventManager.ClosePopupEvent).OnInvoke += OnClosePopups;
         }
 
-        [MenuItem("GameObject/Create Empty Collection", priority = 1)]
+        [MenuItem("GameObject/Magiao/Create Empty Collection", priority = 9)]
         public static GameObject Create()
         {
             GameObject go = new GameObject("Collection");

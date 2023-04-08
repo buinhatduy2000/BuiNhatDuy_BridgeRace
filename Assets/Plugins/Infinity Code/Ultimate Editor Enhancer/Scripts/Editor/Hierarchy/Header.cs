@@ -131,7 +131,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             HierarchyItemDrawer.Register("Header", OnHierarchyItem, HierarchyToolOrder.HEADER);
         }
 
-        [MenuItem("GameObject/Headers/Create Hierarchy Header UltimateEditorEnhancer", priority = 1)]
+        [MenuItem("GameObject/Magiao/Create Hierarchy Header UltimateEditorEnhancer", priority = 9)]
         public static GameObject Create()
         {
             GameObject go = new GameObject(Prefs.hierarchyHeaderPrefix + "✮★☠︎༒︎✞︎Header✞︎༒︎☠︎★✮" + Prefs.hierarchyHeaderPrefix);

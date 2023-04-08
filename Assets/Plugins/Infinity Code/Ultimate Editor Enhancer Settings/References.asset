@@ -387,9 +387,5 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: SampleScene
-    path: Assets/Plugins/Examples/Scenes/SampleScene.unity
-  - name: View States
-    path: Assets/Plugins/Infinity Code/Ultimate Editor Enhancer/Examples/View States.unity
-  - name: OverView
-    path: Assets/Medieval Castle/Scene/OverView.unity
+  - name: GamePlay
+    path: Assets/_Game/Scenes/GamePlay.unity

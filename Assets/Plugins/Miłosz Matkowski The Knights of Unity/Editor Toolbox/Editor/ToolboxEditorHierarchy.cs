@@ -211,7 +211,7 @@ namespace Toolbox.Editor
 
         #region Methods: Utilities
 
-        [MenuItem("GameObject/Headers/Create Hierarchy Header Editor Toolbox", priority = 1)]
+        [MenuItem("GameObject/Create Hierarchy Header Editor Toolbox", priority = 1)]
         private static void CreateHeaderObject(MenuCommand menuCommand)
         {
             var parentGameObject = menuCommand.context as GameObject;
@@ -234,6 +234,25 @@ namespace Toolbox.Editor
             //set proper selection
             Selection.activeObject = headerGameObject;
         }
+
+        //[MenuItem("GameObject/Create Empty Collection Parent", true, priority = 1)]
+        //static bool ValidateCreateEmptyParent()
+        //{
+        //    return Selection.activeGameObject != null && AreSelectedObjectsTopLevel();
+        //}
+
+        //static bool AreSelectedObjectsTopLevel()
+        //{
+        //    foreach (GameObject obj in Selection.gameObjects)
+        //    {
+        //        if (obj.transform.parent != null)
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
+
         [Obsolete]
         private static void HandleHeaderObject(UnityEditor.Editor editor)
         {

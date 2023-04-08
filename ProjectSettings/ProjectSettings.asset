@@ -594,6 +594,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     1: UEE
+    7: UEE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

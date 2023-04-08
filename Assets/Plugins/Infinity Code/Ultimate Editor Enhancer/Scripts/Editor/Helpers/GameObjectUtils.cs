@@ -225,6 +225,28 @@ namespace InfinityCode.UltimateEditorEnhancer
             });
         }
 
+        //public static bool CreateTag(string tag)
+        //{
+        //    if (string.IsNullOrEmpty(tag)) return false;
+
+        //    SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
+        //    SerializedProperty tagsProp = tagManager.FindProperty("tags");
+
+        //    for (int i = 0; i < tagsProp.arraySize; i++)
+        //    {
+        //        SerializedProperty t = tagsProp.GetArrayElementAtIndex(i);
+        //        if (t.stringValue.Equals(tag)) return true;
+        //    }
+
+        //    tagsProp.InsertArrayElementAtIndex(0);
+        //    SerializedProperty n = tagsProp.GetArrayElementAtIndex(0);
+        //    n.stringValue = tag;
+
+        //    tagManager.ApplyModifiedProperties();
+        //    return true;
+        //}
+
+        //Patch
         public static bool CreateTag(string tag)
         {
             if (string.IsNullOrEmpty(tag)) return false;
@@ -232,14 +254,17 @@ namespace InfinityCode.UltimateEditorEnhancer
             SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
             SerializedProperty tagsProp = tagManager.FindProperty("tags");
 
+            // Find the index of the last tag in the list
+            int lastIndex = tagsProp.arraySize - 1;
+
             for (int i = 0; i < tagsProp.arraySize; i++)
             {
                 SerializedProperty t = tagsProp.GetArrayElementAtIndex(i);
                 if (t.stringValue.Equals(tag)) return true;
             }
 
-            tagsProp.InsertArrayElementAtIndex(0);
-            SerializedProperty n = tagsProp.GetArrayElementAtIndex(0);
+            tagsProp.InsertArrayElementAtIndex(lastIndex + 1);
+            SerializedProperty n = tagsProp.GetArrayElementAtIndex(lastIndex + 1);
             n.stringValue = tag;
 
             tagManager.ApplyModifiedProperties();

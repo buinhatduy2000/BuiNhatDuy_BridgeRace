@@ -112,21 +112,21 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             VisualElement topContent = new VisualElement();
             parent.Add(topContent);
 
-            Updater.CheckNewVersionAvailable();
+            //Updater.CheckNewVersionAvailable();
 
-            if (Updater.hasNewVersion)
-            {
-                ToolbarButton updateAvailable = new ToolbarButton(Updater.OpenWindow);
-                updateAvailable.text = "A new version of Ultimate Editor Enhancer is available.\nClick to open the built-in update system.";
-                updateAvailable.tooltip = "Update Available.\nClick to open the built-in update system.";
-                updateAvailable.style.backgroundColor = (Color) new Color32(255, 0, 0, 128);
-                updateAvailable.style.unityTextAlign = TextAnchor.MiddleCenter;
-                updateAvailable.style.color = Color.white;
-                updateAvailable.style.left = 0;
-                updateAvailable.style.paddingTop = updateAvailable.style.paddingBottom = 5;
-                updateAvailable.style.borderLeftWidth = updateAvailable.style.borderRightWidth = 0;
-                topContent.Add(updateAvailable);
-            }
+            //if (Updater.hasNewVersion)
+            //{
+            //    ToolbarButton updateAvailable = new ToolbarButton(Updater.OpenWindow);
+            //    updateAvailable.text = "A new version of Ultimate Editor Enhancer is available.\nClick to open the built-in update system.";
+            //    updateAvailable.tooltip = "Update Available.\nClick to open the built-in update system.";
+            //    updateAvailable.style.backgroundColor = (Color) new Color32(255, 0, 0, 128);
+            //    updateAvailable.style.unityTextAlign = TextAnchor.MiddleCenter;
+            //    updateAvailable.style.color = Color.white;
+            //    updateAvailable.style.left = 0;
+            //    updateAvailable.style.paddingTop = updateAvailable.style.paddingBottom = 5;
+            //    updateAvailable.style.borderLeftWidth = updateAvailable.style.borderRightWidth = 0;
+            //    topContent.Add(updateAvailable);
+            //}
 
             Label helpbox = new Label("Nothing selected");
             helpbox.style.backgroundColor = Color.gray;
